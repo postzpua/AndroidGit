@@ -46,4 +46,24 @@ public class GameLevels extends AppCompatActivity {
 
 
     }
+
+
+    //Системная кнопка "Назад" - начало
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+
+        //начало конструкции
+        try{
+
+            Intent intent = new Intent (GameLevels.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+
+        }catch (Exception e){
+
+        }
+        //конец конструкции
+    }
+    //Системная кнопка "Назад" - конец
 }
