@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class Level1 extends AppCompatActivity {
 
@@ -15,6 +16,13 @@ public class Level1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.universal);
+
+        final ImageView img_left = findViewById(R.id.img_left);
+        final ImageView img_right = findViewById(R.id.img_right);
+
+        // код который скругляет углы
+        img_left.setClipToOutline(true);
+        img_right.setClipToOutline(true);
 
         //Развернуть игру на весь экран - начало
         Window w = getWindow();
