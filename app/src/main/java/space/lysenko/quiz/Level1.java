@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.InputStreamReader;
+
 public class Level1 extends AppCompatActivity {
 
     Dialog dialog;
@@ -84,6 +86,31 @@ public class Level1 extends AppCompatActivity {
 
         dialog.show(); //показать диалоговое окно
 
+
+        //Кнопка "Назад" - начало
+        Button btn_back = findViewById(R.id.button_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Обрабатываем нажатие кнопки "Назад" - начало
+                try {
+                    //Вернуться назад к выбору уровня - начало
+                    Intent intent = new Intent(Level1.this, GameLevels.class); //Создали намерение для перехода
+                    startActivity(intent); //Старт намерения
+                    finish(); //Закрыть этот клас
+
+                    //Вернуться назад к выбору уровня - конец
+
+                }catch (Exception e){
+                    //Здесь кода не будет
+
+                }
+
+                //Обрабатываем нажатие кнопки "Назад" - конец
+            }
+        });
+
+        //Кнопка "Назад" - конец
 
 
     }
