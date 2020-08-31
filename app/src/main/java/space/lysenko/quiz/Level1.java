@@ -26,6 +26,12 @@ public class Level1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.universal);
 
+        //Создаем переменную text_levels
+        TextView text_levels = findViewById(R.id.text_levels);
+        text_levels.setText(R.string.level1); // Установили текст
+
+
+
         final ImageView img_left = findViewById(R.id.img_left);
         final ImageView img_right = findViewById(R.id.img_right);
 
