@@ -15,10 +15,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.InputStreamReader;
+import java.util.Random;
 
 public class Level1 extends AppCompatActivity {
 
     Dialog dialog;
+
+    public int numLeft; // Переменная для левой картинки + текст
+    public int numRight; // Переменная для правой картинки + текст
+
+    Array array = new Array();
+    Random random = new Random();
+
 
 
     @Override
@@ -38,6 +46,12 @@ public class Level1 extends AppCompatActivity {
         // код который скругляет углы
         img_left.setClipToOutline(true);
         img_right.setClipToOutline(true);
+
+        //Путь к левой TextView
+        final TextView text_left = findViewById(R.id.text_left);
+
+        //Путь к правой TextView
+        final TextView text_right = findViewById(R.id.text_left);
 
         //Развернуть игру на весь экран - начало
         Window w = getWindow();
@@ -117,6 +131,27 @@ public class Level1 extends AppCompatActivity {
         });
 
         //Кнопка "Назад" - конец
+
+        numLeft = random.nextInt(10); //Генерируем случайное число от 0 до 9
+        img_left.setImageResource(array.images1[numLeft]); //Достаем из массива картинку
+
+        text_left.setText(array.texts1[numLeft]); //Достаем из массива текст
+
+        numRight = random.nextInt(10);
+
+
+        //Цикл с предусловием, проверяющий равенство чисел - начало
+        while (numLeft == numRight) {
+            numRight = random.nextInt(10);
+        }
+        //Цикл с предусловием, проверяющий равенство чисел - конец
+
+        img_right.setImageResource(array.images1[numRight]);
+        text_right.setText(array.texts1[numRight]);
+
+
+
+
 
 
     }

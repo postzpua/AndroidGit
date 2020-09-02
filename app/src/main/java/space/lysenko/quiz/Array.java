@@ -1,6 +1,6 @@
 package space.lysenko.quiz;
 
-public class array {
+public class Array {
 
     //Массив для первого уровня - начало
     final int[] images1 = {
@@ -16,7 +16,6 @@ public class array {
             R.drawable.onelevel_nine,
     };
 
-    final int[] power1 = {0,1,2,3,4,5,6,7,8,9,};
 
     final int[] texts1 = {
             R.string.lvl1text0,
