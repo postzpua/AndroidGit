@@ -7,9 +7,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +29,8 @@ public class Level1 extends AppCompatActivity {
 
     Array array = new Array();
     Random random = new Random();
+
+    public int count = 0; //Счетчик правильных ответов
 
 
 
@@ -132,10 +137,18 @@ public class Level1 extends AppCompatActivity {
 
         //Кнопка "Назад" - конец
 
+        // Подключаем анимацию - начало
+        final Animation a = AnimationUtils.loadAnimation(Level1.this, R.anim.alpha);
+
+        // Подключаем анимацию - конец
+
+
         numLeft = random.nextInt(10); //Генерируем случайное число от 0 до 9
         img_left.setImageResource(array.images1[numLeft]); //Достаем из массива картинку
 
         text_left.setText(array.texts1[numLeft]); //Достаем из массива текст
+
+
 
         numRight = random.nextInt(10);
 
@@ -148,6 +161,35 @@ public class Level1 extends AppCompatActivity {
 
         img_right.setImageResource(array.images1[numRight]);
         text_right.setText(array.texts1[numRight]);
+
+        // Обрабатываем нажатие на левую картинку - начало
+        img_left.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                // Условие касания картинки - начало
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    //Если коснулся картинки - начало
+                    img_right.setEnabled(false); //Блокируем правую картинку
+                    if (numLeft > numRight) {
+                        img_left.setImageResource(R.drawable.img_true);
+                    }else{
+                        img_left.setImageResource(R.drawable.img_false);
+                    }
+                    //Если коснулся картинки - конец
+
+                }else if(event.getAction() == MotionEvent.ACTION_UP){
+                    //Если отпустил палец - начало
+
+                }
+                // Условие касания картинки - конец
+
+
+                return true;
+            }
+        });
+
+        // Обрабатываем нажатие на левую картинку - конец
+
 
 
 
