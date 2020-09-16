@@ -1,7 +1,5 @@
 package space.lysenko.quiz;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,13 +15,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.InputStreamReader;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Random;
 
-public class Level1 extends AppCompatActivity {
+public class Level2 extends AppCompatActivity {
 
     Dialog dialog;
-    Dialog dialogEnd;
 
     public int numLeft; // Переменная для левой картинки + текст
     public int numRight; // Переменная для правой картинки + текст
@@ -79,7 +77,7 @@ public class Level1 extends AppCompatActivity {
                 //Обрабатываем нажатие кнопки - начало
                 try{
                     //Вернуться назад к выбору уровня - начало
-                    Intent intent = new Intent(Level1.this, GameLevels.class); // Создали намерение для перехода
+                    Intent intent = new Intent(Level2.this, GameLevels.class); // Создали намерение для перехода
                     startActivity(intent); // Старт намерения
                     finish(); //Закрыть этот класс
 
@@ -113,70 +111,6 @@ public class Level1 extends AppCompatActivity {
         dialog.show(); //показать диалоговое окно
 
 
-        //____________________________________________________
-
-        //Вызов диалогового окна в конце игры.
-        dialogEnd = new Dialog(this); // создаем новое диалоговое окно
-        dialogEnd.requestWindowFeature(Window.FEATURE_NO_TITLE); // скрываем заголовок
-        dialogEnd.setContentView(R.layout.dialogend); // путь к макету диалогового окна
-        dialogEnd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // прозрачный фон диалогового окна
-        dialogEnd.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-        dialogEnd.setCancelable(false); // окно нельзя закрыть кнопкой назад
-
-        //Кнопка которая закрывает диалоговое окно - начало
-        TextView btnclose2 = dialogEnd.findViewById(R.id.btnclose);
-        btnclose2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Обрабатываем нажатие кнопки - начало
-                try{
-                    //Вернуться назад к выбору уровня - начало
-                    Intent intent = new Intent(Level1.this, GameLevels.class); // Создали намерение для перехода
-                    startActivity(intent); // Старт намерения
-                    finish(); //Закрыть этот класс
-
-
-                    //Вернуться назад к выбору уровня - конец
-
-                }catch (Exception e){
-                    //Здесь кода не будет
-                }
-
-                dialogEnd.dismiss(); //Закрываем диалоговое окно
-                //Обрабатываем нажатие кнопки - конец
-
-            }
-        });
-
-        //Кнопка которая закрывает диалоговое окно - конец
-
-        //Кнопка "Продолжить" - начало
-        Button btncontinue2 = dialogEnd.findViewById(R.id.btncontinue);
-        btncontinue2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try{
-                    Intent intent = new Intent(Level1.this, Level2.class);
-                    startActivity(intent);
-                    finish();
-
-                }catch (Exception e){
-                    //Здесь кода не будет
-                }
-
-
-                dialogEnd.dismiss(); //Закрываем диалоговое окно
-            }
-        });
-
-        //Кнопка "Продолжить" - конец
-
-
-
-        //____________________________________________________
-
-
-
         //Кнопка "Назад" - начало
         Button btn_back = findViewById(R.id.button_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
@@ -185,7 +119,7 @@ public class Level1 extends AppCompatActivity {
                 //Обрабатываем нажатие кнопки "Назад" - начало
                 try {
                     //Вернуться назад к выбору уровня - начало
-                    Intent intent = new Intent(Level1.this, GameLevels.class); //Создали намерение для перехода
+                    Intent intent = new Intent(Level2.this, GameLevels.class); //Создали намерение для перехода
                     startActivity(intent); //Старт намерения
                     finish(); //Закрыть этот клас
 
@@ -213,7 +147,7 @@ public class Level1 extends AppCompatActivity {
 
 
         // Подключаем анимацию - начало
-        final Animation a = AnimationUtils.loadAnimation(Level1.this, R.anim.alpha);
+        final Animation a = AnimationUtils.loadAnimation(Level2.this, R.anim.alpha);
 
         // Подключаем анимацию - конец
 
@@ -304,7 +238,6 @@ public class Level1 extends AppCompatActivity {
                     //Если отпустил палец - конец
                         if(count==20){
                             //ВЫХОД ИЗ УРОВНЯ
-                            dialogEnd.show();
                         }else{
                             numLeft = random.nextInt(10); //Генерируем случайное число от 0 до 9
                             img_left.setImageResource(array.images1[numLeft]); //Достаем из массива картинку
@@ -411,7 +344,6 @@ public class Level1 extends AppCompatActivity {
                     //Если отпустил палец - конец
                     if(count==20){
                         //ВЫХОД ИЗ УРОВНЯ
-                        dialogEnd.show();
                     }else{
                         numLeft = random.nextInt(10); //Генерируем случайное число от 0 до 9
                         img_left.setImageResource(array.images1[numLeft]); //Достаем из массива картинку
@@ -467,7 +399,7 @@ public class Level1 extends AppCompatActivity {
         //начало конструкции
         try{
 
-            Intent intent = new Intent (Level1.this, GameLevels.class);
+            Intent intent = new Intent (Level2.this, GameLevels.class);
             startActivity(intent);
             finish();
 
