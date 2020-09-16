@@ -208,18 +208,64 @@ public class Level1 extends AppCompatActivity {
                                 tv.setBackgroundResource(R.drawable.style_points_green);
                             }
 
-
-
                         // Определяем правильные ответы и закрашиваем зеленым - конец
-
-
 
                     }else{
                         //Если левая картинка меньше
+                        if(count>0){
+                            if(count==1){
+                                count=0;
+                            }else{
+                                count=count-2;
+                            }
+                        }
+
+                        //Закрашиваем прогресс серым цветом - начало
+                        for(int i=0; i<19; i++){
+                            TextView tv = findViewById(progress[i]);
+                            tv.setBackgroundResource(R.drawable.style_points);
+                        }
+                        //Закрашиваем прогресс серым цветом - конец
+
+                        // Определяем правильные ответы и закрашиваем зеленым - начало
+                        for(int i=0; i<count; i++){
+                            TextView tv = findViewById(progress[i]);
+                            tv.setBackgroundResource(R.drawable.style_points_green);
+                        }
+
+                        // Определяем правильные ответы и закрашиваем зеленым - конец
 
                     }
-
                     //Если отпустил палец - конец
+                        if(count==20){
+                            //ВЫХОД ИЗ УРОВНЯ
+                        }else{
+                            numLeft = random.nextInt(10); //Генерируем случайное число от 0 до 9
+                            img_left.setImageResource(array.images1[numLeft]); //Достаем из массива картинку
+                            img_left.startAnimation(a);
+
+                            text_left.setText(array.texts1[numLeft]); //Достаем из массива текст
+
+
+
+                            numRight = random.nextInt(10);
+
+
+                            //Цикл с предусловием, проверяющий равенство чисел - начало
+                            while (numLeft == numRight) {
+                                numRight = random.nextInt(10);
+                            }
+                            //Цикл с предусловием, проверяющий равенство чисел - конец
+
+                            img_right.setImageResource(array.images1[numRight]);
+                            img_right.startAnimation(a);
+                            text_right.setText(array.texts1[numRight]);
+
+                            img_right.setEnabled(true); //Включаем обратно правую картинку
+
+
+                        }
+
                 }
                 // Условие касания картинки - конец
 
