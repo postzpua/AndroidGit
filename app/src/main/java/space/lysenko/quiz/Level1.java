@@ -278,6 +278,112 @@ public class Level1 extends AppCompatActivity {
 
 
 
+        // Обрабатываем нажатие на правую картинку - начало
+        img_right.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                // Условие касания картинки - начало
+                if (event.getAction() == MotionEvent.ACTION_DOWN){
+                    //Если коснулся картинки - начало
+                    img_left.setEnabled(false); //Блокируем левую картинку
+                    if (numLeft < numRight) {
+                        img_right.setImageResource(R.drawable.img_true);
+                    }else{
+                        img_right.setImageResource(R.drawable.img_false);
+                    }
+                    //Если коснулся картинки - конец
+
+                }else if(event.getAction() == MotionEvent.ACTION_UP){
+                    //Если отпустил палец - начало
+                    if(numLeft<numRight){
+                        //Если правая картинка больше
+                        if(count<20){
+                            count++;
+                        }
+
+                        //Закрашиваем прогресс серым цветом - начало
+                        for(int i=0; i<20; i++){
+                            TextView tv = findViewById(progress[i]);
+                            tv.setBackgroundResource(R.drawable.style_points);
+                        }
+                        //Закрашиваем прогресс серым цветом - конец
+
+                        // Определяем правильные ответы и закрашиваем зеленым - начало
+                        for(int i=0; i<count; i++){
+                            TextView tv = findViewById(progress[i]);
+                            tv.setBackgroundResource(R.drawable.style_points_green);
+                        }
+
+                        // Определяем правильные ответы и закрашиваем зеленым - конец
+
+                    }else{
+                        //Если правая картинка меньше
+                        if(count>0){
+                            if(count==1){
+                                count=0;
+                            }else{
+                                count=count-2;
+                            }
+                        }
+
+                        //Закрашиваем прогресс серым цветом - начало
+                        for(int i=0; i<19; i++){
+                            TextView tv = findViewById(progress[i]);
+                            tv.setBackgroundResource(R.drawable.style_points);
+                        }
+                        //Закрашиваем прогресс серым цветом - конец
+
+                        // Определяем правильные ответы и закрашиваем зеленым - начало
+                        for(int i=0; i<count; i++){
+                            TextView tv = findViewById(progress[i]);
+                            tv.setBackgroundResource(R.drawable.style_points_green);
+                        }
+
+                        // Определяем правильные ответы и закрашиваем зеленым - конец
+
+                    }
+                    //Если отпустил палец - конец
+                    if(count==20){
+                        //ВЫХОД ИЗ УРОВНЯ
+                    }else{
+                        numLeft = random.nextInt(10); //Генерируем случайное число от 0 до 9
+                        img_left.setImageResource(array.images1[numLeft]); //Достаем из массива картинку
+                        img_left.startAnimation(a);
+
+                        text_left.setText(array.texts1[numLeft]); //Достаем из массива текст
+
+
+
+                        numRight = random.nextInt(10);
+
+
+                        //Цикл с предусловием, проверяющий равенство чисел - начало
+                        while (numLeft == numRight) {
+                            numRight = random.nextInt(10);
+                        }
+                        //Цикл с предусловием, проверяющий равенство чисел - конец
+
+                        img_right.setImageResource(array.images1[numRight]);
+                        img_right.startAnimation(a);
+                        text_right.setText(array.texts1[numRight]);
+
+                        img_left.setEnabled(true); //Включаем обратно левую картинку
+
+
+                    }
+
+                }
+                // Условие касания картинки - конец
+
+
+                return true;
+            }
+        });
+
+        // Обрабатываем нажатие на правую картинку - конец
+
+
+
 
 
 
