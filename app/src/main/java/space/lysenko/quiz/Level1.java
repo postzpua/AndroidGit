@@ -137,6 +137,16 @@ public class Level1 extends AppCompatActivity {
 
         //Кнопка "Назад" - конец
 
+        //Массив для прогресса игры - начало
+        final int[] progress = {
+                R.id.point1, R.id.point2, R.id.point3, R.id.point4, R.id.point5,
+                R.id.point6, R.id.point7, R.id.point8, R.id.point9, R.id.point10,
+                R.id.point11, R.id.point12, R.id.point13, R.id.point14, R.id.point15,
+                R.id.point16, R.id.point17, R.id.point18, R.id.point19, R.id.point20
+        };
+        //Массив для прогресса игры - конец
+
+
         // Подключаем анимацию - начало
         final Animation a = AnimationUtils.loadAnimation(Level1.this, R.anim.alpha);
 
@@ -179,7 +189,37 @@ public class Level1 extends AppCompatActivity {
 
                 }else if(event.getAction() == MotionEvent.ACTION_UP){
                     //Если отпустил палец - начало
+                    if(numLeft>numRight){
+                        //Если левая картинка больше
+                        if(count<20){
+                            count++;
+                        }
 
+                        //Закрашиваем прогресс серым цветом - начало
+                            for(int i=0; i<20; i++){
+                                TextView tv = findViewById(progress[i]);
+                                tv.setBackgroundResource(R.drawable.style_points);
+                            }
+                        //Закрашиваем прогресс серым цветом - конец
+
+                        // Определяем правильные ответы и закрашиваем зеленым - начало
+                            for(int i=0; i<count; i++){
+                                TextView tv = findViewById(progress[i]);
+                                tv.setBackgroundResource(R.drawable.style_points_green);
+                            }
+
+
+
+                        // Определяем правильные ответы и закрашиваем зеленым - конец
+
+
+
+                    }else{
+                        //Если левая картинка меньше
+
+                    }
+
+                    //Если отпустил палец - конец
                 }
                 // Условие касания картинки - конец
 
