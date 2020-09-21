@@ -57,7 +57,7 @@ public class Level1 extends AppCompatActivity {
         final TextView text_left = findViewById(R.id.text_left);
 
         //Путь к правой TextView
-        final TextView text_right = findViewById(R.id.text_left);
+        final TextView text_right = findViewById(R.id.text_right);
 
         //Развернуть игру на весь экран - начало
         Window w = getWindow();
