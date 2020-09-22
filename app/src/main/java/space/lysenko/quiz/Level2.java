@@ -22,6 +22,7 @@ import java.util.Random;
 public class Level2 extends AppCompatActivity {
 
     Dialog dialog;
+    Dialog dialogEnd;
 
     public int numLeft; // Переменная для левой картинки + текст
     public int numRight; // Переменная для правой картинки + текст
@@ -120,6 +121,73 @@ public class Level2 extends AppCompatActivity {
 
 
         dialog.show(); //показать диалоговое окно
+
+        //____________________________________________________
+
+        //Вызов диалогового окна в конце игры.
+        dialogEnd = new Dialog(this); // создаем новое диалоговое окно
+        dialogEnd.requestWindowFeature(Window.FEATURE_NO_TITLE); // скрываем заголовок
+        dialogEnd.setContentView(R.layout.dialogend); // путь к макету диалогового окна
+        dialogEnd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // прозрачный фон диалогового окна
+        dialogEnd.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        dialogEnd.setCancelable(false); // окно нельзя закрыть кнопкой назад
+
+        //Интересный факт - начало
+        TextView textdescriptionEnd = (TextView) dialogEnd.findViewById(R.id.textdescriptionEnd);
+        textdescriptionEnd.setText(R.string.leveltwoEnd);
+        //Интересный факт - конец
+
+        //Кнопка которая закрывает диалоговое окно - начало
+        TextView btnclose2 = dialogEnd.findViewById(R.id.btnclose);
+        btnclose2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Обрабатываем нажатие кнопки - начало
+                try{
+                    //Вернуться назад к выбору уровня - начало
+                    Intent intent = new Intent(Level2.this, GameLevels.class); // Создали намерение для перехода
+                    startActivity(intent); // Старт намерения
+                    finish(); //Закрыть этот класс
+
+
+                    //Вернуться назад к выбору уровня - конец
+
+                }catch (Exception e){
+                    //Здесь кода не будет
+                }
+
+                dialogEnd.dismiss(); //Закрываем диалоговое окно
+                //Обрабатываем нажатие кнопки - конец
+
+            }
+        });
+
+        //Кнопка которая закрывает диалоговое окно - конец
+
+        //Кнопка "Продолжить" - начало
+        Button btncontinue2 = dialogEnd.findViewById(R.id.btncontinue);
+        btncontinue2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    Intent intent = new Intent(Level2.this, Level2.class);
+                    startActivity(intent);
+                    finish();
+
+                }catch (Exception e){
+                    //Здесь кода не будет
+                }
+
+
+                dialogEnd.dismiss(); //Закрываем диалоговое окно
+            }
+        });
+
+        //Кнопка "Продолжить" - конец
+
+
+
+        //____________________________________________________
 
 
         //Кнопка "Назад" - начало
@@ -249,6 +317,7 @@ public class Level2 extends AppCompatActivity {
                     //Если отпустил палец - конец
                         if(count==20){
                             //ВЫХОД ИЗ УРОВНЯ
+                            dialogEnd.show();
                         }else{
                             numLeft = random.nextInt(10); //Генерируем случайное число от 0 до 9
                             img_left.setImageResource(array.images2[numLeft]); //Достаем из массива картинку
@@ -355,6 +424,7 @@ public class Level2 extends AppCompatActivity {
                     //Если отпустил палец - конец
                     if(count==20){
                         //ВЫХОД ИЗ УРОВНЯ
+                        dialogEnd.show();
                     }else{
                         numLeft = random.nextInt(10); //Генерируем случайное число от 0 до 9
                         img_left.setImageResource(array.images2[numLeft]); //Достаем из массива картинку
